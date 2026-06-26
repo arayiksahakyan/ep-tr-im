@@ -43,12 +43,12 @@ resource "azurerm_cdn_frontdoor_route" "this" {
   cdn_frontdoor_origin_group_id = azurerm_cdn_frontdoor_origin_group.this.id
   cdn_frontdoor_origin_ids      = [azurerm_cdn_frontdoor_origin.this.id]
 
-  supported_protocols    = ["Http", "Https"]
-  patterns_to_match      = ["/blob.txt"]
-  forwarding_protocol    = "HttpsOnly"
-  https_redirect_enabled = true
-  link_to_default_domain = true
-
+  supported_protocols       = ["Http", "Https"]
+  patterns_to_match         = ["/*"]
+  forwarding_protocol       = "HttpsOnly"
+  https_redirect_enabled    = true
+  link_to_default_domain    = true
+  cdn_frontdoor_origin_path = "/blob.txt"
   depends_on = [
     azurerm_cdn_frontdoor_origin.this
   ]
